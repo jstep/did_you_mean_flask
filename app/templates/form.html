@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+	<p>
+	    {{ form.input_word(autofocus=true, placeholder="Enter a word") }}<br>
+	    {% for error in form.input_word.errors %}
+	    <span style="color: red;">[{{ error }}]</span>
+	    {% endfor %}
+	</p>
+	<p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}

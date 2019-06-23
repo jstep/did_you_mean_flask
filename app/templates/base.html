@@ -1,0 +1,26 @@
+<html>
+    <head>
+      {% if title %}
+      <title>{{ title }} - Did you mean?</title>
+      {% else %}
+      <title>Welcome to Did you mean?</title>
+      {% endif %}
+    </head>
+    <body>
+	<div>Levenshtein 
+	    <a href="{{ url_for('index') }}">Home</a>
+	    <a href="{{ url_for('form_page') }}">Form</a>
+	</div>
+        <hr>
+        {% block content %}{% endblock %}
+	{% with messages = get_flashed_messages() %}
+	{% if messages %}
+	<ul>
+	   {% for message in messages %}
+	   <li>{{ message }}</li>
+	   {% endfor %}
+	</ul>
+	{% endif %}
+	{% endwith %}
+    </body>
+</html>
