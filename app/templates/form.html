@@ -1,14 +1,11 @@
 {% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
-{% block content %}
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-	<p>
-	    {{ form.input_word(autofocus=true, placeholder="Enter a word") }}<br>
-	    {% for error in form.input_word.errors %}
-	    <span style="color: red;">[{{ error }}]</span>
-	    {% endfor %}
-	</p>
-	<p>{{ form.submit() }}</p>
-    </form>
+{% block app_content %}
+    <div class="row">
+        <div class="col-md-4">
+	    {{ wtf.quick_form(form) }}
+	</div>
+    </div>        
+	    
 {% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <h1>About this project</h1
+    <p>
+    	This <a href="https://github.com/jstep/did_you_mean_flask" target="_blank=">app</a>
+	mimics the functionality of popular <em>"Did you mean?"</em> word suggestion
+	features such as when a misspelled word is entered into a search engine.
+    </p>
+    <p>
+    	It uses a <a href="https://en.wikipedia.org/wiki/Levenshtein_distance" target="_blank">
+	Levenshtein Distance</a> algorithm which calculates a <strong>cost</strong> 
+	of changing one string, letter by letter, to another. Also known as <strong>Edit Distance</strong>
+	it recursively loops over two strings and assigns a cost to change one to the other. The operations are <strong>substitution</strong>, <strong>insertion</strong>, and <strong>deletion</strong>. Each is set to a cost of 1 per operation, but these could be adjusted to weight different operations, thus incurring a larger cost.
+    </p>
+    <p>
+    	I initially wrote it as a <a href="https://github.com/jstep/did_you_mean" target="_blank">command line program</a> then built this Flask app around it to make it nicer to use.
+    </p>
+    <figure class="text-center">
+	<img src="../static/img/levenshtein.jpg" class="figure-img img-fluid rounded" alt="A picture of Vladimir Levenshtein">
+	<figcaption class="figure-caption">Vladimir Levenshtein (total rockstar)</figcaption
+    </figure>
+{% endblock %}
