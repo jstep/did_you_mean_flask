@@ -7,6 +7,8 @@ from flask import flash
 from app import app, cache
 from app.levenshtein import levenshtein
 
+# Current directory path.
+dirname = os.path.dirname(__file__)
 
 logger = logging.getLogger(__name__)
 
@@ -15,7 +17,7 @@ if os.path.exists('/usr/dict/words'):
 elif os.path.exists('/usr/share/dict/words'):
     path_to_words = '/usr/share/dict/words'
 else:
-    path_to_words = './static/assests/words.txt'
+    path_to_words = os.path.join(dirname, 'static/assets/words.txt') 
 
 # Open and grab the words in the file as a set.
 with open(path_to_words) as f:
