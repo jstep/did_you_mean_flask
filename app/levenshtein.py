@@ -1,6 +1,3 @@
-#####################################
-# Edit/Levenshtein distance functions
-#####################################
 def call_counter(func):
     # Decorator used for debugging how many times a function was called.
     def helper(*args, **kwargs):
@@ -11,6 +8,7 @@ def call_counter(func):
     return helper
 
 def memoize(func):
+    """Saves already compute values to speed up levenshtein function."""
     mem = {}
     def memoizer(*args, **kwargs):
         key = str(args) + str(kwargs)
@@ -21,22 +19,19 @@ def memoize(func):
 
 @call_counter
 @memoize    
-def levenshtein(s: str, t: str) -> int:
-    if s == "":
-        return len(t)
-    if t == "":
-        return len(s)
-    if s[-1] == t[-1]:
+def levenshtein(seq1: str, seq2: str) -> int:
+    """Recursively compute the edit distance of two strings."""
+    if seq1 == "":
+        return len(seq2)
+    if seq2 == "":
+        return len(seq1)
+    if seq1[-1] == seq2[-1]:
         cost = 0
     else:
         cost = 1
     
-    result = min([levenshtein(s[:-1], t) + 1,
-               levenshtein(s, t[:-1]) + 1,
-               levenshtein(s[:-1], t[:-1]) + cost ])
+    result = min([levenshtein(seq1[:-1], seq2) + 1,
+               levenshtein(seq1, seq2[:-1]) + 1,
+               levenshtein(seq1[:-1], seq2[:-1]) + cost ])
     return result
-
-#####################################
-# End of Edit/Levenshtien functions
-#####################################
 
