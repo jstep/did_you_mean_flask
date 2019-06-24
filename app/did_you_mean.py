@@ -4,7 +4,7 @@ import timeit
 
 from flask import flash
 
-from app import app
+from app import app, cache
 from app.levenshtein import levenshtein
 
 
@@ -25,6 +25,7 @@ def real_word(word):
     """Check if word is in word set. I.e. it's not a mispelled word. """
     return word in all_words_set
 
+@cache.memoize(50)
 def closest_match(input_word: str) -> str:
     start = timeit.default_timer()
     logger.debug(f"\nChecking {input_word} against words in {path_to_words}")
