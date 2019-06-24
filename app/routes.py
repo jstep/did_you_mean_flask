@@ -1,4 +1,5 @@
 from flask import render_template, flash, redirect, url_for
+
 from app import app 
 from app.forms import InputForm
 from app.did_you_mean import closest_match 
@@ -19,6 +20,6 @@ def form_page():
     input_word = form.data['input_word']
     if form.validate_on_submit():
         result = closest_match(input_word)
-        flash(result)
+        flash(result, 'info')
     return render_template('form.html', title='Did you mean?', form=form)
 

@@ -1,7 +1,10 @@
 import os
-import timeit
 import logging
+import timeit
 
+from flask import flash
+
+from app import app
 from app.levenshtein import levenshtein
 
 
@@ -23,6 +26,7 @@ def real_word(word):
     return word in all_words_set
 
 def closest_match(input_word: str) -> str:
+    start = timeit.default_timer()
     logger.debug(f"\nChecking {input_word} against words in {path_to_words}")
     
     if real_word(input_word):
@@ -32,6 +36,7 @@ def closest_match(input_word: str) -> str:
 
     # TODO: this is slow and could use some optimization. Maybe break out
     # early if the edit distance is computed to be 1.
+    # TODO: Add flask-cache.
     # Compute the edit distance between the input word and all words.
     ld_values_list = [levenshtein(input_word, w) for w in all_words_set]
     
@@ -40,18 +45,12 @@ def closest_match(input_word: str) -> str:
    
     # Get the min value of the edit values list.
     min_key = min(ld_dict.keys())
+    
+    end = timeit.default_timer()
+    
+    if app.debug:
+        flash(f'The function was called {levenshtein.calls} times', 'warning')
+        flash(f'Time taken to execute function: {end-start:.2f} seconds', 'warning')
 
     return f'Did you mean {ld_dict.get(min_key)}?'
-
-#if __name__ == "__main__":
-#    start = timeit.default_timer() 
-#    closest_match = closest_match(input_word, all_words_set)
-#    print(f"\nDid you mean {closest_match}?")
-#    end = timeit.default_timer()
-#    print(f"---------------")
-    
-#    print(f"https://www.merriam-webster.com/dictionary/{closest_match}\n")
-
-#    print(f'The function was called {levenshtein.calls} times.')
-#    print(f'Time taken: {end-start:.2f} seconds\n')
 
