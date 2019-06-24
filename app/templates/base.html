@@ -1,6 +1,6 @@
 {% extends 'bootstrap/base.html' %}
 {% block title %}
-    {% if title %}{{ title }} - Did you mean?{% else %}Did you mean?{% endif %}
+    {% if title %}{{ title }} - Levenshtein{% else %}Did you mean?{% endif %}
 {% endblock %}
 
 {% block navbar %}
@@ -30,12 +30,12 @@
 
 {% block content %}
     <div class="container">
-	{# application content needs to be provided in the app_content block #}
         {% block app_content %}{% endblock %}
 
         {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages %}
+	    <br>
             <div class="alert alert-info" role="alert">{{ message }}</div>
             {% endfor %}
         {% endif %}

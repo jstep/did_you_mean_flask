@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% block app_content %}
-    <h1>Welcome!</h1
-    <p>Please go to the <a href="{{ url_for('form_page') }}">form</a></p>
+    <div class="text-center">
+        <h1>Welcome!</h1>
+        <a href="{{ url_for('form_page') }}" class="btn-lg btn-info">Begin</a>
+    </div>
 {% endblock %}

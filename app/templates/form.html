@@ -2,10 +2,11 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
-    <div class="row">
+    <div class="row m-15">
         <div class="col-md-4">
-	    {{ wtf.quick_form(form) }}
+	    {{ wtf.quick_form(form, button_map={'submit': 'success'}) }}
 	</div>
+	<br>
     </div>        
 	    
 {% endblock %}
