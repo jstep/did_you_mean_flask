@@ -37,7 +37,6 @@ def closest_match(input_word: str) -> str:
 
     # TODO: this is slow and could use some optimization. Maybe break out
     # early if the edit distance is computed to be 1.
-    # TODO: Add flask-cache.
     # Compute the edit distance between the input word and all words.
     ld_values_list = [levenshtein(input_word, w) for w in all_words_set]
     
